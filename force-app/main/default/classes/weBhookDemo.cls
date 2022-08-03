@@ -7,6 +7,7 @@ try{
     RestResponse response= RestContext.response;
         system.debug('request : '+request);
         system.debug('response : '+response); 
+        system.debug('response : '+response); 
 }catch(Exception e){
 system.debug('Exc: '+e);
 }
