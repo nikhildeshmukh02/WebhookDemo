@@ -1,0 +1,10 @@
+<template>
+    <h1 class="slds-text-heading_small">List of String</h1>
+    <div class="slds-p-around_medium">
+        <!--For each loop to display Contact from the list.-->
+        <template for:each={lstStrings} for:item="str">
+            <p key={str}>{str}</p>
+        </template>
+    </div>
+    
+</template>

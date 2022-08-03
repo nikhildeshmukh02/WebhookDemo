@@ -1,0 +1,54 @@
+<aura:component controller="displayContact_Controller" implements="force:appHostable,flexipage:availableForRecordHome">
+    <aura:attribute name="ContactList" type="LIST"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:iteration items="{!v.ContactList}" var="item">
+        
+        <lightning:card>
+            <div class="c-container">
+                <lightning:layout >
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">First Name</p>
+                            <p>{!item.FirstName}</p>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout >
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">Last Name</p>
+                            <p>{!item.LastName}</p>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                
+                <lightning:layout >
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">Email</p>
+                            <p>{!item.Email}</p>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                
+                <lightning:layout >
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">Phone</p>
+                            <p>{!item.Phone}</p>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout >
+                    <lightning:layoutItem padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Field 1">Account Name</p>
+                            <p>{!item.Account.Name}</p>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div> 
+        </lightning:card>
+    </aura:iteration>
+    
+</aura:component>

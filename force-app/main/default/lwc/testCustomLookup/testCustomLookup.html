@@ -1,0 +1,15 @@
+<template>
+    
+        <lightning-card  >
+            <div class="slds-p-around_small">
+            <c-custom-lookup name="Account Lookup" accountrecordid={recordId} lookup-label="Account" object-api-name="Account"
+            icon-name="standard:contact" onrecordselection={onRecordSelection}></c-custom-lookup>
+            
+            <template if:true={sectionName}>
+            <p class="slds-p-horizontal_small">Section Name: {sectionName}</p>
+            <p class="slds-p-horizontal_small">Selected Record Id : {selectedRecord.Id}</p>
+            <p class="slds-p-horizontal_small">Selected Record Name : {selectedRecord.Name}</p>
+            </template>
+            </div>
+        </lightning-card>
+    </template>

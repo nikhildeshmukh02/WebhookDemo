@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-m-around_xx-large">
+        <div class="slds-clearfix">
+            <div class="slds-page-header" role="banner">
+                <p class="slds-page-header__title">Accounts</p>
+            </div>
+        </div>
+                <div style="width: auto;">
+                    <template if:true={data}>
+                        <lightning-datatable data={data}
+                                             columns={columns}
+                                             key-field="id"
+                                             sorted-by={sortBy}
+                                             sorted-direction={sortDirection}
+                                             onsort={handleSortdata}
+                                             hide-checkbox-column="true"></lightning-datatable>
+                    </template>
+        
+                </div>
+        <div class="slds-clearfix">
+            <div class="slds-page-header" role="banner">
+                <div class="slds-float_right">            
+                    <lightning-button label="Prev" icon-name="utility:chevronleft" icon-position="left"
+                                      onclick={handlePrev} disabled={pageNu}></lightning-button>
+                    <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                                      disabled={isLastPage} onclick={handleNext}></lightning-button>
+                </div>
+                <p class="slds-page-header__title">Page {pageNumber} | Showing records from ' to '+((pageNumber-1)*v.pageSize+dataSize)}</p>
+            </div>
+        </div>
+    </div>
+</template>

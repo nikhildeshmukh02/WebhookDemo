@@ -1,0 +1,52 @@
+<apex:page controller="UserPageController" sidebar="false" showHeader="false">
+    <apex:form id="frmid1">
+        <br/>
+        <br/>
+        <div>
+            <apex:actionRegion >
+                <apex:selectRadio layout="pageDirection" value="{!selectedProfileString}">
+                    <apex:selectOptions value="{!radioButtonOptions}"/>
+                    <apex:actionsupport event="onchange" rerender="updateList"/>
+                </apex:selectRadio>
+            </apex:actionRegion>
+        </div>
+        <div>
+            <apex:pageBlock title="Add User" id="pbid">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="save" action="{!save}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection title="User details" columns="2">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="First Name" for="forecast"/>
+                        <apex:actionRegion >
+                            <apex:inputField value="{!usr.FirstName}" id="forecast">
+                                <apex:actionSupport event="onchange" action="{!onchangeMethod}" reRender="abc"/>
+                            </apex:inputField>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                    <apex:selectList multiselect="false" label="Profile:"  size="1" id="updateList">
+                        <apex:selectOptions value="{!profileList}">
+                        </apex:selectOptions>
+                    </apex:selectList>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Last Name" for="forecast"/>
+                        <apex:outputPanel id="abc">
+                            <apex:inputField value="{!usr.LastName}"/>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:inputField value="{!usr.Email}"/>
+                </apex:pageBlockSection>
+                <apex:outputPanel id="updateList">
+                    <apex:pageBlockSection title="Technician details" columns="2" rendered="{!IF(selectedProfileString == 'FSE', true , false)}">
+                        <!--  <apex:inputField value="{!usr.FirstName}"/>-->
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Others" columns="2" rendered="{!IF(selectedProfileString == 'Coordination/Call Center', true , false)}">
+                        <apex:selectList id="sel2" value="{!rightselected}" multiselect="true" style="width:100px" size="5">
+                            <apex:selectOptions value="{!SelectedValues}" />
+                        </apex:selectList>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+</apex:page>

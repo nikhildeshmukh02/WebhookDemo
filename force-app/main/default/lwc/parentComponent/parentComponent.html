@@ -1,0 +1,16 @@
+<template>
+    <lightning-card  title="SFDC Egal">
+        <div class="slds-m-bottom_x-large">
+            <!-- Input for Contact Name -->
+            <div class="slds-p-around_medium">
+                <lightning-input type="text" label="Value" placeholder="Enter Value..." value={strvalue} onchange={changeName}></lightning-input>
+            </div>
+            <!-- Button to add contact -->
+            <lightning-button variant="brand" label="Add String" title="Add String" onclick={addString} class="slds-p-around_medium"></lightning-button>
+            <!-- Child Component to display list of Contacts-->
+            <div class="slds-m-top_x-medium slds-p-around_medium">
+                <c-child-component></c-child-component>
+            </div>
+        </div>
+    </lightning-card>
+</template>

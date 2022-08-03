@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="displayMessage" type="String" default="Hey"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="subject" type="String" description="Name of the person you want to greet" />
+    <aura:attribute name="greeting" type="String"/>
+    <lightning:card title="{!v.displayMessage}">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" largeDeviceSize="12" mediumDeviceSize="8" smallDeviceSize="6" size="12">
+               <lightning:input name="message" value="{! v.message }" placeholder="type your Message..." label="Message" />
+            </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:layout>
+            <lightning:layoutItem  padding="around-small" largeDeviceSize="12" mediumDeviceSize="8" smallDeviceSize="6" size="12">
+                <lightning:button variant="brand" label="Enter" title="click" onclick="{!c.handleClick }" />
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+</aura:component>

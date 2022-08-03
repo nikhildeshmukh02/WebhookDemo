@@ -1,0 +1,47 @@
+<template>
+    <template if:true={isModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+        <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCancelClick}>
+            <lightning-icon icon-name="utility:close" alternative-text="Close" title="Close"></lightning-icon>
+        <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Account </h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="6">
+                    <div class="header-column">
+                        <lightning-input type="text" name="Account Name" label="Account Name" value={accountObject.Name}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="6">
+                    <div class="header-column">
+                        <lightning-input type="text" name="Owner" label="Owner" value={accountObject.Name}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="6">
+                    <div class="header-column">
+                        <lightning-input type="text" name="Amount" label="Amount" value={accountObject.Name}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="6">
+                    <div class="header-column">
+                        <lightning-input type="text" name="Account Name" label="rating" value={accountObject.Name}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <footer class="slds-modal__footer">
+            <lightning-button variant="Neutral" label="Cancel" title="Looks like a link" onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Save & New" title="Looks like a link" onclick={handleSaveandNewClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="success" label="Save" title="Looks like a link" onclick={handleSaveClick} class="slds-m-left_x-small"></lightning-button>
+        </footer>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

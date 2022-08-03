@@ -1,0 +1,24 @@
+<template>
+    <table>
+      <thead>
+          <th>Name</th>
+      </thead>
+      <tbody>
+          <template for:each={tableData} for:item="rowData">
+              <tr key={rowData.Id} class={rowData.rowStyle}>
+                  <td>
+                   
+                          <lightning-icon icon-name={rowData.iconName} 
+                          size=x-small 
+                          onclick={showOrHideChildrenRows} 
+                          data-rowid={rowData.Id}
+                          data-expanded="false">
+                          </lightning-icon>
+                          {rowData.Name}
+                     
+                  </td>
+              </tr>
+          </template>
+      </tbody>
+    </table>
+  </template>

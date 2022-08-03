@@ -1,0 +1,4 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader">
+  
+    <c:callLWCfromAura oncloseQuickAction="{!c.closeQuickAction_AuraMethod}"></c:callLWCfromAura>
+</aura:component>

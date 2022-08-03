@@ -1,0 +1,39 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" controller="accountListController" cache="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
+        <head>
+            <title>Account</title>
+            <meta content="yes" name="apple-mobile-web-app-capable"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+            <apex:slds />
+        </head>
+        <body style="max-width: 800px;margin: auto; background-color: #f6f6f6;">
+            <!--REQUIRED SLDS WRAPPER-->
+            <div class="slds-scope"> 
+                <apex:dataTable value="{!accounts}" var="account" id="theTable"
+                                rowClasses="odd,even" styleClass="tableClass">
+                    <apex:facet name="header">Account Table</apex:facet>
+                    <apex:column >
+                        <apex:facet name="header">Name</apex:facet>
+                        <apex:outputText value="{!account.name}"/>
+                    </apex:column>
+                     <apex:column >
+                        <apex:facet name="header">Account Number</apex:facet>
+                        <apex:outputText value="{!account.AccountNumber}"/>
+                    </apex:column>
+                     <apex:column >
+                        <apex:facet name="header">Phone</apex:facet>
+                        <apex:outputText value="{!account.Phone}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Parent Account</apex:facet>
+                        <apex:outputText value="{!account.Parent.name }"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Owner</apex:facet>
+                        <apex:outputText value="{!account.owner.name}"/>
+                    </apex:column>
+                </apex:dataTable>
+            </div>
+        </body>
+    </html>
+</apex:page>

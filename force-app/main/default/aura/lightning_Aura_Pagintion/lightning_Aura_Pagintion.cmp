@@ -1,0 +1,78 @@
+<aura:component controller="auraPaginationController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isLoaded" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="isSending" type="boolean" />
+    <!-- Attribute Declration For Pagination -->
+    <aura:attribute name="contactList" type="List"/>
+    <aura:attribute name="PaginationList" type="Contact"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+      <aura:attribute name="pageNumber" type="Integer" default="1" />
+    <div>
+        <aura:if isTrue="{! v.isLoaded }">
+            <lightning:spinner alternativeText="Loading" variant="brand" size="large" title="Loading...." />
+        </aura:if>
+        <lightning:card>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-text-title_caps" scope="col" >
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Mobile Phone">Mobile Phone</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Email">Email</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Owner">Owner</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.PaginationList}" var="acc">
+                        <tr class="slds-hint-parent ">
+                            <td  data-label="{!acc.Name}" scope="row">
+                                <div class="slds-truncate" title="{!acc.Name}">{!acc.Name}</div>
+                            </td>
+                            <td data-label="{!acc.MobilePhone}">
+                                <div class="slds-truncate" title="{!acc.MobilePhone}">
+                                    {!acc.MobilePhone}</div>
+                            </td>
+                            <td data-label="{!acc.Email}">
+                                <div class="slds-truncate" title="{!acc.Email}"> {!acc.Email}
+                                </div>
+                            </td>
+                            <td data-label="{!acc.Owner.Name}">
+                                <div class="slds-truncate" title="{!acc.Owner.Name}">
+                                    {!acc.Owner.Name}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <div class="slds-clearfix">
+                <div class="slds-page-header" role="banner">
+                    <div class="slds-m-top_medium" >
+                        <div class="slds-float_right">
+                            <lightning:buttonGroup >
+                                <lightning:button label="Previous" disabled="{!v.startPage == 0}" 
+                                                  onclick="{!c.handlePrev}" variant="brand"
+                                                  iconName='utility:back'/>
+                                &nbsp; &nbsp; &nbsp;
+                                <lightning:button label="Next" disabled="{!v.endPage >= v.totalRecords}" 
+                                                  onclick="{!c.handleNext}" variant="brand"
+                                                  iconName='utility:forward' iconPosition='right'/>
+                            </lightning:buttonGroup>
+                        </div>
+                        <p class="slds-page-header__title">Page {!v.pageNumber} | Showing records from
+                            {!((v.pageNumber-1)*v.pageSize)+' to '+((v.totalRecords))}</p>
+                    </div>
+                </div>
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>

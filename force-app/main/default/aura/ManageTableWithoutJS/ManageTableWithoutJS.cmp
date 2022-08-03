@@ -1,0 +1,62 @@
+<aura:component controller="manageColumns_Apex"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>   
+    <aura:attribute name="fieldsName" type="List" />
+    <aura:attribute name="selectedValue" type="List" />
+    <aura:attribute name="headerList" type="List" />
+    <aura:attribute name="accountData" type="List" />
+    <aura:attribute name="ObjectName" type="String" default="Account"/>
+    <aura:attribute name="isChecked" type="Boolean" default="false"/>
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:if isTrue="{! v.isLoaded }">
+        <lightning:spinner alternativeText="Loading" size="large" variant="brand"  />
+    </aura:if>
+    <aura:if isTrue="{!v.isOpen}">
+        <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.openModel}">
+                        X
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header99" class="slds-text-heading--medium">Manage Table Columns</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div class="slds-p-around_medium">
+                        <aura:iteration var="fName" items="{!v.fieldsName}" indexVar="indx">
+                            <lightning:input 
+                                             id="fieldName"
+                                             aura:id="myCheckboxes" 
+                                             type="checkbox" 
+                                             label="{!fName.label}" 
+                                             value="{!fName.apiName}"
+                                             checked=""
+                                             onchange="{!c.onSelectAllChange}"/>
+                            
+                        </aura:iteration>
+                    </div>  
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.getSelectedFieldData}" >Done</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+    </aura:if>
+    <div class="slds-m-around--large">  
+        <div class="slds-clearfix">
+            <div class="slds-float_right">
+                <lightning:buttonIcon size="large" onclick="{!c.openModel}" iconName="utility:matrix" variant="bare" title="manage table columns" alternativeText="Settings" iconClass="dark"/>
+            </div>
+        </div>
+        <br/> <br/>
+        <div class="slds-scrollable_x"> 
+            
+            <div aura:id="newDtPlaceholder">
+                {!v.body}
+            </div>
+        </div>
+    </div> 
+</aura:component>
